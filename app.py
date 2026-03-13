@@ -1,115 +1,141 @@
 import streamlit as st
+from streamlit_option_menu import option_menu # Install via: pip install streamlit-option-menu
 
-# 1. Page Configuration (Minimalist Setup)
-st.set_page_config(page_title="El Ancla Invisible", page_icon="⚓", layout="centered")
+# 1. Page Config
+st.set_page_config(page_title="El Ancla Invisible", page_icon="⚓", layout="wide")
 
-# Custom CSS for rounded borders and right-aligned quote
+# Custom CSS for the "Minimalist" and "Right-Aligned" requirements
 st.markdown("""
     <style>
-    .main {
-        background-color: #f8f9fa;
-    }
-    .stApp {
-        border: 1px solid #e6e6e6;
-        border-radius: 20px;
-        padding: 20px;
-    }
-    .quote-container {
+    .right-quote {
         text-align: right;
         font-style: italic;
-        color: #555;
-        margin-bottom: 30px;
+        color: #666;
+        border-right: 4px solid #eee;
+        padding-right: 20px;
+        margin: 20px 0;
+    }
+    .main-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid #f0f2f6;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 2. Header and Quote
-st.title("El Ancla Invisible: Por Qué Tu Patria Se Siente Como una 'Madre' y Cómo Esto Moldea Tu Identidad")
+# 2. Sidebar Navigation
+with st.sidebar:
+    st.title("Navegación")
+    selected = option_menu(
+        menu_title=None,
+        options=["Portada", "Contenido", "Conclusiones", "Referencias"],
+        icons=["house", "book", "check-circle", "list-stars"],
+        menu_icon="cast",
+        default_index=0,
+    )
 
-st.markdown("""
-<div class="quote-container">
-    "Would the valleys were your streets, and the green paths your alleys, <br>
-    that you might seek one another through vineyards, and come with <br>
-    the fragrance of the earth in your garments." <br>
-    <strong>— From The Prophet by Kahlil Gibran</strong>
-</div>
-""", unsafe_allow_html=True)
+# --- SECCIÓN: PORTADA ---
+if selected == "Portada":
+    st.markdown('<div class="main-card">', unsafe_allow_html=True)
+    col_a, col_b = st.columns([2, 1])
+    
+    with col_a:
+        st.title("El Ancla Invisible")
+        st.subheader("Por Qué Tu Patria Se Siente Como una 'Madre' y Cómo Esto Moldea Tu Identidad")
+        st.write("---")
+        st.markdown("**Artículo de Divulgación Científica**")
+        st.write("Explorando el vínculo psicológico entre el individuo y su nación.")
+    
+    with col_b:
+        # A placeholder for a visual element or icon
+        st.markdown("# ⚓")
+        st.info("Lectura estimada: 5 min")
 
-# 3. Introduction
-st.write("""
-¿Alguna vez te has preguntado por qué sentimos un nudo en la garganta al escuchar nuestro himno en el extranjero o por qué ciertos paisajes nos hacen sentir protegidos, como si estuviéramos en los brazos de un ser querido? 
+    st.markdown("""
+    <div class="right-quote">
+        "Would the valleys were your streets, and the green paths your alleys, 
+        that you might seek one another through vineyards, and come with 
+        the fragrance of the earth in your garments." <br>
+        <strong>— Kahlil Gibran, The Prophet</strong>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-No es solo patriotismo; la ciencia sugiere que nuestra relación con nuestro país de origen funciona de manera muy similar al vínculo emocional que un bebé desarrolla con sus padres.
-""")
+# --- SECCIÓN: CONTENIDO ---
+elif selected == "Contenido":
+    st.header("Secciones del Contenido")
+    
+    # Using Containers for clean separation
+    with st.container():
+        st.markdown("### 1. El Vínculo Primordial")
+        st.write("""
+        ¿Alguna vez te has preguntado por qué sentimos un nudo en la garganta al escuchar nuestro himno? 
+        La ciencia sugiere que nuestra relación con nuestro país funciona de manera muy similar al 
+        vínculo emocional que un bebé desarrolla con sus padres.
+        """)
+        
+        # Columns for the "Three ways of understanding"
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Curiosidad", "Madre Simbólica")
+        c2.metric("Beneficio", "Bienestar Emocional")
+        c3.metric("Noticia", "Valores Personales")
 
-# 4. Three Ways of Understanding (Using Columns)
-st.subheader("Tres Formas de Entender Nuestro 'Hogar'")
-col1, col2, col3 = st.columns(3)
+    st.write("---")
 
-with col1:
-    st.info("**Curiosidad**")
-    st.caption("¿Es tu país tu 'madre simbólica'? Descubre la psicología detrás del arraigo.")
+    with st.container():
+        st.markdown("### 2. La Ciencia del Apego Cultural")
+        st.write("Existen diferentes 'estilos' de relación con nuestra patria:")
+        
+        tab_seguro, tab_ansioso, tab_evitativo = st.tabs(["Apego Seguro", "Apego Ansioso", "Apego Evitativo"])
+        
+        with tab_seguro:
+            st.write("**Definición:** Tu país es un lugar de apoyo que te da confianza para explorar el mundo.")
+        with tab_ansioso:
+            st.write("**Definición:** Te preocupa que tu cultura se pierda o no ser 'lo suficientemente' parte de ella.")
+        with tab_evitativo:
+            st.write("**Definición:** Mantienes una distancia emocional; tu origen no es fundamental para quién eres.")
 
-with col2:
-    st.success("**Beneficio**")
-    st.caption("Cómo fortalecer tu identidad cultural puede mejorar tu bienestar emocional.")
+    st.write("---")
 
-with col3:
-    st.warning("**Noticia**")
-    st.caption("Nuevos estudios revelan que los valores son el motor secreto de la identidad.")
+    with st.container():
+        st.markdown("### 3. El Hallazgo 'Eureka'")
+        st.write("Lo que nos une a nuestra nación son nuestros **valores personales**:")
+        
+        col_m1, col_m2 = st.columns(2)
+        with col_m1:
+            st.markdown("> **Grupos Mayoritarios:** Motor = Conservación (estabilidad y tradición).")
+        with col_m2:
+            st.markdown("> **Grupos Minoritarios:** Motor = Poder (estatus y éxito social).")
 
-# 5. Core Content
-st.markdown("### ¿Por qué nos importa tanto de dónde venimos?")
-st.write("""
-Entender nuestra conexión con la nación no es solo un ejercicio académico. Este vínculo influye directamente en nuestra salud mental y en cómo nos relacionamos con los demás. Cuando nos sentimos "seguros" en nuestra cultura, somos más propensos a ser abiertos y tolerantes.
-""")
+# --- SECCIÓN: CONCLUSIONES ---
+elif selected == "Conclusiones":
+    st.header("Conclusiones y Reflexión Final")
+    
+    st.success("""
+    Nuestra identidad nacional no es una etiqueta estática, sino un **proceso vivo** que se alimenta 
+    de nuestra necesidad de seguridad y conexión. Sentirnos "en casa" actúa como un escudo protector 
+    que mejora nuestra satisfacción con la vida y reduce el estrés.
+    """)
+    
+    st.markdown("#### Reflexión")
+    st.write("""
+    En un mundo globalizado, comprender este 'ancla invisible' no es para cerrarnos al resto, 
+    sino para navegar con mayor seguridad. ¿Cuál es tu estilo de apego con tu tierra hoy?
+    """)
 
-# Diagram of Attachment Styles
+# --- SECCIÓN: REFERENCIAS ---
+elif selected == "Referencias":
+    st.header("Referencias Bibliográficas")
+    st.write("Selecciona una fuente para leer el resumen del estudio:")
 
+    refs = {
+        "Benish-Weisman, M., et al. (2024)": "Analiza cómo los valores de conservación y poder median la identificación nacional en jóvenes.",
+        "Ferenczi, N., & Marshall, T. C. (2013)": "Explora el apego a la patria y su asociación con la identidad cultural.",
+        "Goedert, C., et al. (2019)": "Investiga sentimientos de seguridad y actitudes hacia la aculturación.",
+        "Hong, Y.-y., et al. (2013)": "Propone una nueva teoría para entender la competencia transcultural."
+    }
 
-st.markdown("### La Ciencia del 'Apego Cultural'")
-st.write("Los investigadores han descubierto que existen diferentes 'estilos' de relación con nuestra patria:")
-
-# Using Expanders for the Styles
-with st.expander("Apego Seguro"):
-    st.write("Sientes que tu país es un lugar de apoyo que te da confianza para explorar el mundo.")
-
-with st.expander("Apego Temeroso o Ansioso"):
-    st.write("Te preocupa que tu cultura se pierda o que no seas 'lo suficientemente' parte de ella.")
-
-with st.expander("Apego Evitativo o Desapegado"):
-    st.write("Mantienes una distancia emocional y no consideras que tu origen sea fundamental.")
-
-# 6. The Eureka Moment
-st.divider()
-st.markdown("### El Momento '¡Eureka!'")
-st.write("Un estudio reciente reveló que lo que nos une a nuestra nación son nuestros **valores personales**:")
-
-tab1, tab2 = st.tabs(["Grupos Mayoritarios", "Grupos Minoritarios"])
-with tab1:
-    st.write("**Motor:** La conservación (deseo de estabilidad y mantener las tradiciones).")
-with tab2:
-    st.write("**Motor:** El poder (búsqueda de estatus y éxito social).")
-
-# 7. Conclusion
-st.success("Nuestra identidad nacional no es una etiqueta estática, sino un proceso vivo que se alimenta de nuestra necesidad de seguridad y conexión.")
-
-# 8. Interactive References (Dropdowns)
-st.divider()
-st.subheader("Referencias")
-ref_choice = st.selectbox("Selecciona un artículo para ver el resumen:", [
-    "Seleccionar...",
-    "Benish-Weisman, M. (2024)",
-    "Ferenczi & Marshall (2013)",
-    "Goedert, C. (2019)",
-    "Hong, Y-y. (2013)"
-])
-
-if ref_choice == "Benish-Weisman, M. (2024)":
-    st.write("**Resumen:** Este estudio longitudinal investiga cómo los valores humanos básicos de Schwartz motivan el desarrollo de la identidad nacional en jóvenes de grupos mayoritarios (judíos-israelíes) y minoritarios (árabes-israelíes). Los hallazgos revelan que los valores de conservación (tradición, seguridad y conformidad) son los principales impulsores de la identidad nacional en la mayoría, ya que refuerzan la estabilidad del statu quo. En contraste, para los jóvenes de minorías, la identidad nacional está más vinculada a los valores de poder, sugiriendo que la identificación con la nación mayoritaria puede ser vista como un recurso para alcanzar estatus o éxito social.")
-elif ref_choice == "Ferenczi & Marshall (2013)":
-    st.write("**Resumen:** Las autoras aplican la teoría del apego de forma simbólica a la nación de origen, tratándola como un 'cuidador' que brinda seguridad emocional. El estudio identifica tres estilos de apego nacional: seguro-preocupado, temeroso y evitativo. Los resultados indican que un apego seguro-preocupado hacia la patria predice una mayor identificación con la cultura de herencia y niveles más altos de bienestar subjetivo. Por el contrario, en migrantes internacionales, el apego evitativo o de rechazo hacia su país de origen se asocia con una disminución en la identificación cultural y una menor adaptación emocional.")
-elif ref_choice == "Goedert, C. (2019)":
-    st.write("**Resumen:** Investiga cómo los sentimientos de seguridad y los estilos de apego general de los ciudadanos nativos influyen en su apertura hacia los inmigrantes en Luxemburgo. El artículo distingue entre seguridad 'general' (rasgo de personalidad) y seguridad 'específica' (económica y cultural). Los hallazgos muestran que las personas con un apego seguro tienen actitudes más positivas hacia la diversidad. Sin embargo, la percepción de amenaza cultural o económica actúa como un predictor más fuerte de actitudes negativas que el estilo de apego general, sugiriendo que la sensación de inseguridad contextual es clave en el rechazo hacia el otro.")
-elif ref_choice == "Hong, Y-y. (2013)":
-    st.write("**Resumen:** Este artículo introduce la Teoría del Apego Cultural, proponiendo que la cultura propia funciona como una 'base segura' que permite a los individuos explorar nuevos entornos culturales con confianza. A través de varios experimentos, los autores demuestran que cuando se activa (o se hace priming) la seguridad cultural, los individuos muestran una mayor competencia transcultural y son menos propensos a reaccionar defensivamente ante amenazas externas. La cultura se conceptualiza aquí no solo como conocimiento compartido, sino como un soporte emocional fundamental para la adaptación en un mundo globalizado.")
+    for title, summary in refs.items():
+        with st.expander(title):
+            st.write(f"**Resumen:** {summary}")
