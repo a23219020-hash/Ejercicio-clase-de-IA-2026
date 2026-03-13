@@ -1,6 +1,10 @@
 import streamlit as st
-from streamlit_option_menu import option_menu # Install via: pip install streamlit-option-menu
-
+with st.sidebar:
+    st.title("Navegación")
+    selected = st.radio(
+        "Ir a:",
+        ["Portada", "Contenido", "Conclusiones", "Referencias"]
+    )
 # 1. Page Config
 st.set_page_config(page_title="El Ancla Invisible", page_icon="⚓", layout="wide")
 
