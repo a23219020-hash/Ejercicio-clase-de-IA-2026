@@ -39,14 +39,15 @@ if selected == "Portada":
     
     st.write("---")
     
-        st.markdown("""
-    <div class="right-quote">
-        "Would the valleys were your streets, and the green paths your alleys, 
-        that you might seek one another through vineyards, and come with 
-        the fragrance of the earth in your garments." <br>
-        <strong>— From The Prophet by Kahlil Gibran</strong>
-    </div>
-    """, unsafe_allow_html=True)
+    # Esta parte ahora tiene la indentación correcta (4 espacios)
+    st.markdown("""
+        <div class="right-quote">
+            "Would the valleys were your streets, and the green paths your alleys, 
+            that you might seek one another through vineyards, and come with 
+            the fragrance of the earth in your garments." <br>
+            <strong>— From The Prophet by Kahlil Gibran</strong>
+        </div>
+        """, unsafe_allow_html=True)
 
     col1, col2 = st.columns([2, 1])
     with col1:
@@ -59,10 +60,7 @@ if selected == "Portada":
     with col2:
         st.markdown("### ⚓")
         st.info("**Publicación:** Marzo 2026")
-
-
-
-# --- SECCIÓN: CONTENIDO ---
+        
 # --- SECCIÓN: CONTENIDO ---
 elif selected == "Contenido":
     st.header("Secciones del Contenido")
