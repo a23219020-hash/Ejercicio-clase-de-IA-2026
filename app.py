@@ -39,6 +39,15 @@ if selected == "Portada":
     
     st.write("---")
     
+        st.markdown("""
+    <div class="right-quote">
+        "Would the valleys were your streets, and the green paths your alleys, 
+        that you might seek one another through vineyards, and come with 
+        the fragrance of the earth in your garments." <br>
+        <strong>— From The Prophet by Kahlil Gibran</strong>
+    </div>
+    """, unsafe_allow_html=True)
+
     col1, col2 = st.columns([2, 1])
     with col1:
         st.write("""
@@ -51,40 +60,69 @@ if selected == "Portada":
         st.markdown("### ⚓")
         st.info("**Publicación:** Marzo 2026")
 
-    st.markdown("""
-    <div class="right-quote">
-        "Would the valleys were your streets, and the green paths your alleys, 
-        that you might seek one another through vineyards, and come with 
-        the fragrance of the earth in your garments." <br>
-        <strong>— From The Prophet by Kahlil Gibran</strong>
-    </div>
-    """, unsafe_allow_html=True)
 
+
+# --- SECCIÓN: CONTENIDO ---
 # --- SECCIÓN: CONTENIDO ---
 elif selected == "Contenido":
     st.header("Secciones del Contenido")
     
+    # 1. Tres Formas de Entender Nuestro "Hogar"
     with st.container():
-        st.markdown("#### Tres Formas de Entender Nuestro 'Hogar'")
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Foco", "Curiosidad")
-        c2.metric("Foco", "Beneficio")
-        c3.metric("Foco", "Noticia")
-        
-    st.markdown("---")
-    
-    st.subheader("La Ciencia del 'Apego Cultural'")
-    st.write("Existen diferentes estilos de relación con nuestra patria:")
-    
-    with st.expander("Apego Seguro"):
-        st.write("Sientes que tu país es un lugar de apoyo que te da confianza para explorar el mundo.")
-    
-    with st.expander("Apego Temeroso o Ansioso"):
-        st.write("Te preocupa que tu cultura se pierda o que no seas 'lo suficientemente' parte de ella.")
-    
-    with st.expander("Apego Evitativo o Desapegado"):
-        st.write("Mantienes una distancia emocional y no consideras que tu origen sea fundamental.")
+        st.subheader("Tres Formas de Entender Nuestro 'Hogar'")
+        st.markdown("""
+        * **Curiosidad:** ¿Es tu país tu "madre simbólica"? Descubre la psicología detrás del arraigo nacional.
+        * **Beneficio:** Cómo fortalecer tu identidad cultural puede mejorar tu bienestar emocional.
+        * **Noticia:** Nuevos estudios revelan que los valores personales son el motor secreto de la identidad nacional en jóvenes.
+        """)
 
+    st.divider()
+
+    # 2. ¿Por qué nos importa tanto de dónde venimos?
+    with st.container():
+        st.subheader("¿Por qué nos importa tanto de dónde venimos?")
+        st.write("""
+        Entender nuestra conexión con la nación no es solo un ejercicio académico. Este vínculo influye 
+        directamente en nuestra salud mental y en cómo nos relacionamos con los demás. Cuando nos 
+        sentimos "seguros" en nuestra cultura, somos más propensos a ser abiertos y tolerantes con 
+        otras personas. Por el contrario, sentir que nuestra identidad está amenazada puede cerrarnos 
+        las puertas a la diversidad.
+        """)
+
+    st.divider()
+
+    # 3. El Mapa del Afecto: De la Familia a la Nación
+    with st.container():
+        st.subheader("El Mapa del Afecto: De la Familia a la Nación")
+        st.info("""
+        Imagina que el concepto de "nación" es como un refugio seguro en medio de una tormenta. 
+        Al igual que un niño busca a sus cuidadores cuando tiene miedo, los adultos a menudo 
+        buscamos consuelo en los símbolos, el idioma y las tradiciones de nuestra tierra cuando 
+        nos sentimos vulnerables.
+        """)
+
+    st.divider()
+
+    # 4. La Ciencia del "Apego Cultural"
+    with st.container():
+        st.subheader("La Ciencia del 'Apego Cultural'")
+        st.write("""
+        Los investigadores han descubierto que existen diferentes "estilos" de relación con nuestra patria, 
+        similares a los que tenemos con nuestras parejas o padres:
+        """)
+        
+        # Implementación con expanders para mantener el diseño minimalista
+        with st.expander("Apego Seguro"):
+            st.write("Sientes que tu país es un lugar de apoyo que te da confianza para explorar el mundo.")
+        
+        with st.expander("Apego Temeroso o Ansioso"):
+            st.write("Te preocupa que tu cultura se pierda o que no seas 'lo suficientemente' parte de ella.")
+        
+        with st.expander("Apego Evitativo o Desapegado"):
+            st.write("Mantienes una distancia emocional y no consideras que tu origen sea fundamental para quién eres.")
+
+    # Aquí continuaría la parte del "Eureka" y los valores que ya teníamos.
+    
     st.markdown("---")
     
     st.subheader("El Momento '¡Eureka!'")
